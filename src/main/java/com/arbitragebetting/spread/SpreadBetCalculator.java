@@ -12,12 +12,12 @@ import java.util.stream.IntStream;
 public class SpreadBetCalculator {
 
     public List<SpreadBet> calculate(List<SpreadBet> brokerBets, BettingType bettingType) {
-        var permutationIterator = createPermutationIterator(brokerBets.size());
+        var permutationIterator = createBetPermutationIterator(brokerBets.size());
         List<SpreadBet> spreadBets = new ArrayList<>();
         while (permutationIterator.hasNext()) {
             List<Integer> betIndices = permutationIterator.next().subList(0, bettingType.getNrOfBets());
             List<Bet> bets = IntStream.range(0, betIndices.size())
-                    .mapToObj(index -> brokerBets.get(betIndices.get(index)).getBetData(index))
+                    .mapToObj(index -> brokerBets.get(betIndices.get(index)).getBet(index))
                     .toList();
             spreadBets.add(bettingType.buildBet(bets));
         }
@@ -25,7 +25,7 @@ public class SpreadBetCalculator {
         return spreadBets;
     }
 
-    private PermutationIterator<Integer> createPermutationIterator(int nrOfBets) {
+    private PermutationIterator<Integer> createBetPermutationIterator(int nrOfBets) {
         return new PermutationIterator<>(IntStream.range(0, nrOfBets).boxed().toList());
     }
 

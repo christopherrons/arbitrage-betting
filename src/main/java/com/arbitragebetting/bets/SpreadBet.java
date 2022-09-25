@@ -4,7 +4,7 @@ import com.arbitragebetting.model.Bet;
 
 import java.util.List;
 
-public abstract class SpreadBet {
+public class SpreadBet {
     private final List<Bet> bets;
 
     protected SpreadBet(List<Bet> bets) {
@@ -21,7 +21,7 @@ public abstract class SpreadBet {
                 .sum();
     }
 
-    public Bet getBetData(int index) {
+    public Bet getBet(int index) {
         return bets.get(index);
     }
 

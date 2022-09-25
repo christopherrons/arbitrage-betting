@@ -1,8 +1,8 @@
 package com.arbitragebetting.enums;
 
 import com.arbitragebetting.bets.SpreadBet;
-import com.arbitragebetting.bets.WinLoseBet;
-import com.arbitragebetting.bets.WinLoseDrawBet;
+import com.arbitragebetting.bets.ThreeWayBet;
+import com.arbitragebetting.bets.TwoWayBet;
 import com.arbitragebetting.model.Bet;
 
 import java.util.List;
@@ -10,8 +10,8 @@ import java.util.function.Function;
 
 public enum BettingType {
 
-    WIN_LOSE_DRAW(WinLoseDrawBet::new, 3),
-    WIN_LOSE(WinLoseBet::new, 2);
+    TWO_WAY_BET(TwoWayBet::new, 2),
+    THREE_WAY_BET(ThreeWayBet::new, 3);
 
     private final Function<List<Bet>, SpreadBet> betBuilder;
     private final int nrOfBets;
@@ -28,4 +28,4 @@ public enum BettingType {
     public int getNrOfBets() {
         return nrOfBets;
     }
-    }
+}

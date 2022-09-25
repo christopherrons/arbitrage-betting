@@ -7,11 +7,11 @@ import java.util.List;
 
 public class ArbitrageResultPrinter {
 
-    public static void printSpreadData(List<ArbitrageCalculationResult> arbitrageCalculationResults) {
+    public static void printArbitrageResults(List<ArbitrageCalculationResult> arbitrageCalculationResults) {
         arbitrageCalculationResults.sort(Comparator.comparing(ArbitrageCalculationResult::calculateProfit).reversed());
 
         var bestResult = arbitrageCalculationResults.get(0);
-        System.out.printf("Top Result!%nProfit=%s, Payout=%s, Total Stake=%s, Percentile=%s | Bets: %s %n%n", bestResult.calculateProfit(), bestResult.calculatePayout(), bestResult.calculateStake(), bestResult.getProfitPercentile() * 100, bestResult.spreadBet());
+        System.out.printf("Top Result!%nProfit=%s, Payout=%s, Total Stake=%s, Percentile=%s | Bets: %s %n%n", bestResult.calculateProfit(), bestResult.calculatePayout(), bestResult.calculateStake(), bestResult.getProfitPercentile() * 100, bestResult.arbitrageCalculationResultItems());
 
         System.out.println("All Results!");
         for (int i = 0; i < arbitrageCalculationResults.size(); i++) {
