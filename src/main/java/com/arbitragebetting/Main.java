@@ -8,19 +8,21 @@ import com.arbitragebetting.model.BetConfiguration;
 
 import java.util.List;
 
+import static com.arbitragebetting.enums.BettingType.*;
 import static com.arbitragebetting.utils.ArbitrageResultPrinter.printArbitrageResults;
 
 public class Main {
 
     public static void main(String[] args) {
-        var bet_1 = new TwoWayBet("Svenska Spel", 3.84, 1.24);
-        var bet_2 = new TwoWayBet("Hajper", 3.50, 1.27);
+        var bet_1 = new ThreeWayBet("Svenska Spel", 4.9, 1.64, 4.55);
+        var bet_2 = new ThreeWayBet("Betsson", 3.95, 1.70, 4.45);
+        var bet_3 = new ThreeWayBet("NordicBet", 3.70, 1.76, 4.40);
 
         var arbitrageCalculator = new ArbitrageCalculator();
         var result = arbitrageCalculator.calculateUnbiasedArbitrage(
                 new BetConfiguration(
-                        BettingType.TWO_WAY_BET,
-                        List.of(bet_1, bet_2),
+                        THREE_WAY_BET,
+                        List.of(bet_1, bet_2, bet_3),
                         1000)
         );
 
